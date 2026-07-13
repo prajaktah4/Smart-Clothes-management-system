@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>ReWear | Giving Every Thread a Second Life</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f7f8fc;
+overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+background:#ffffff;
+
+padding:15px 0;
+
+box-shadow:0 3px 15px rgba(0,0,0,.08);
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+}
+
+.logo{
+
+font-size:34px;
+
+font-weight:700;
+
+color:#2E7D32;
+
+text-decoration:none;
+
+}
+
+.logo:hover{
+
+color:#198754;
+
+}
+
+.search-box{
+
+height:48px;
+
+border-radius:40px;
+
+border:none;
+
+background:#eef2f7;
+
+padding-left:20px;
+
+font-size:15px;
+
+}
+
+.search-box:focus{
+
+box-shadow:none;
+
+background:white;
+
+}
+
+.nav-icon{
+
+font-size:23px;
+
+color:#333;
+
+margin-left:18px;
+
+transition:.3s;
+
+}
+
+.nav-icon:hover{
+
+color:#198754;
+
+transform:scale(1.15);
+
+}
+
+/* ================= COMMON ================= */
+
+.section-title{
+
+font-size:34px;
+
+font-weight:700;
+
+margin-bottom:35px;
+
+color:#222;
+
+}
+
+.card{
+
+border:none;
+
+border-radius:20px;
+
+overflow:hidden;
+
+transition:.4s;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.btn{
+
+border-radius:30px;
+
+padding:10px 24px;
+
+font-weight:600;
+
+}
+
+.btn-success{
+
+background:#198754;
+
+border:none;
+
+}
+
+.btn-success:hover{
+
+background:#157347;
+
+}
+
+.btn-primary{
+
+border:none;
+
+}
+
+.btn-warning{
+
+color:white;
+
+}
+
+.badge-offer{
+
+background:red;
+
+position:absolute;
+
+top:15px;
+
+left:15px;
+
+padding:8px 15px;
+
+border-radius:30px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg">
+
+<div class="container">
+
+<a class="logo"
+th:href="@{/user-dashboard}">
+
+♻ ReWear
+
+</a>
+
+<button class="navbar-toggler"
+
+data-bs-toggle="collapse"
+
+data-bs-target="#menu">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse"
+
+id="menu">
+
+<div class="mx-auto w-50">
+
+<input
+
+type="text"
+
+class="form-control search-box"
+
+placeholder="Search clothes, brands and more...">
+
+</div>
+
+<div>
+
+<a th:href="@{/marketplace}"
+
+class="nav-icon">
+
+<i class="bi bi-shop"></i>
+
+</a>
+
+<a th:href="@{/wishlist}"
+
+class="nav-icon">
+
+<i class="bi bi-heart"></i>
+
+</a>
+
+<a th:href="@{/cart}"
+
+class="nav-icon">
+
+<i class="bi bi-cart3"></i>
+
+</a>
+
+<a th:href="@{/my-orders}"
+
+class="nav-icon">
+
+<i class="bi bi-bag-check"></i>
+
+</a>
+
+<a th:href="@{/profile}"
+
+class="nav-icon">
+
+<i class="bi bi-person-circle"></i>
+
+</a>
+
+<a th:href="@{/my-uploads}" class="btn btn-light me-2">
+    <i class="bi bi-box-seam"></i>
+    My Uploads
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- ================= HERO SECTION ================= -->
+
+<div class="container mt-4">
+
+<div class="row">
+
+<div class="col-lg-8">
+
+<div id="heroSlider" class="carousel slide" data-bs-ride="carousel">
+
+<div class="carousel-inner rounded-4 shadow">
+
+<div class="carousel-item active">
+
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600"
+
+class="d-block w-100"
+
+style="height:450px;object-fit:cover;">
+
+<div class="carousel-caption text-start">
+
+<h1 class="fw-bold">
+
+Give Every Thread A Second Life
+
+</h1>
+
+<p>
+
+Buy • Sell • Donate • Exchange
+
+</p>
+
+<a th:href="@{/marketplace}"
+
+class="btn btn-success">
+
+Explore Marketplace
+
+</a>
+
+</div>
+
+</div>
+
+<div class="carousel-item">
+
+<img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600"
+
+class="d-block w-100"
+
+style="height:450px;object-fit:cover;">
+
+<div class="carousel-caption">
+
+<h2>
+
+Sustainable Fashion
+
+</h2>
+
+<p>
+
+Save Money • Save Planet
+
+</p>
+
+</div>
+
+</div>
+
+<div class="carousel-item">
+
+<img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600"
+
+class="d-block w-100"
+
+style="height:450px;object-fit:cover;">
+
+<div class="carousel-caption">
+
+<h2>
+
+Reuse Your Clothes
+
+</h2>
+
+<p>
+
+Join the ReWear Community
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="carousel-control-prev"
+
+type="button"
+
+data-bs-target="#heroSlider"
+
+data-bs-slide="prev">
+
+<span class="carousel-control-prev-icon"></span>
+
+</button>
+
+<button class="carousel-control-next"
+
+type="button"
+
+data-bs-target="#heroSlider"
+
+data-bs-slide="next">
+
+<span class="carousel-control-next-icon"></span>
+
+</button>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card bg-success text-white mb-3 p-4">
+
+<h3>
+
+♻ Eco Friendly
+
+</h3>
+
+<p>
+
+Reuse clothes and reduce textile waste.
+
+</p>
+
+</div>
+
+<div class="card bg-primary text-white mb-3 p-4">
+
+<h3>
+
+💰 Sell Instantly
+
+</h3>
+
+<p>
+
+Upload your clothes and start earning.
+
+</p>
+
+</div>
+
+<div class="card bg-danger text-white p-4">
+
+<h3>
+
+❤️ Donate
+
+</h3>
+
+<p>
+
+Help someone with your unused clothes.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= CATEGORIES ================= -->
+
+<!-- Shop by Category -->
+
+<!-- Shop by Category -->
+
+<div class="container mt-5">
+
+    <h2 class="section-title fw-bold mb-4">
+        Shop by Category
+    </h2>
+
+    <div class="row text-center g-4">
+
+		<!-- Men -->
+		       <div class="col-lg-2 col-md-4 col-6">
+		           <div class="card p-4 h-100">
+		               <img src="https://img.icons8.com/color/96/t-shirt.png"
+		                    width="80"
+		                    class="mx-auto"
+		                    alt="Men">
+		               <h5 class="mt-3">Men</h5>
+		           </div>
+		       </div>
+
+		       <!-- Women -->
+		       <div class="col-lg-2 col-md-4 col-6">
+		           <div class="card p-4 h-100">
+		               <img src="https://img.icons8.com/color/96/womens-shirt.png"
+		                    width="80"
+		                    class="mx-auto"
+		                    alt="Women">
+		               <h5 class="mt-3">Women</h5>
+		           </div>
+		       </div>
+
+
+        <!-- Kids -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="card p-4 h-100">
+                <i class="bi bi-emoji-smile-fill text-warning" style="font-size:70px;"></i>
+                <h5 class="mt-3">Kids</h5>
+            </div>
+        </div>
+
+        <!-- Shoes -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="card p-4 h-100">
+                <i class="bi bi-bootstrap-fill text-success" style="font-size:70px;"></i>
+                <h5 class="mt-3">Shoes</h5>
+            </div>
+        </div>
+
+        <!-- Bags -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="card p-4 h-100">
+                <i class="bi bi-handbag-fill text-info" style="font-size:70px;"></i>
+                <h5 class="mt-3">Bags</h5>
+            </div>
+        </div>
+
+        <!-- Accessories -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="card p-4 h-100">
+                <i class="bi bi-gem text-secondary" style="font-size:70px;"></i>
+                <h5 class="mt-3">Accessories</h5>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= OFFER SECTION ================= -->
+
+<div class="container mt-5">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card bg-warning text-dark p-4">
+
+<h2>
+
+50% OFF
+
+</h2>
+
+<p>
+
+Special Offers on Trending Fashion
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card bg-info text-white p-4">
+
+<h2>
+
+Free Exchange
+
+</h2>
+
+<p>
+
+Exchange Clothes Without Extra Charges
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card bg-dark text-white p-4">
+
+<h2>
+
+New Arrivals
+
+</h2>
+
+<p>
+
+Discover Newly Uploaded Clothes
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FEATURED PRODUCTS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title">
+Featured Products
+</h2>
+
+<div class="row g-4">
+
+<div class="col-lg-3 col-md-6"
+th:each="product : ${products}">
+
+<div class="card h-100 shadow">
+
+<div class="position-relative">
+
+<img th:src="@{'/uploads/' + ${product.imageName}}"
+class="card-img-top"
+style="height:320px;object-fit:cover;">
+
+<span class="badge bg-danger badge-offer">
+NEW
+</span>
+
+<a th:href="@{'/wishlist/add/' + ${product.productId}}"
+style="position:absolute;top:15px;right:15px;">
+
+<i class="bi bi-heart-fill fs-3 text-danger"></i>
+
+</a>
+
+</div>
+
+<div class="card-body">
+
+<h5 class="fw-bold"
+th:text="${product.productName}">
+Product Name
+</h5>
+
+<p class="text-secondary mb-1">
+
+Brand :
+<span th:text="${product.brand}"></span>
+
+</p>
+
+<p class="text-secondary mb-1">
+
+Category :
+<span th:text="${product.category}"></span>
+
+</p>
+
+<p class="text-secondary mb-1">
+
+Size :
+<span th:text="${product.size}"></span>
+
+</p>
+
+<p class="text-secondary mb-2">
+
+Condition :
+<span th:text="${product.condition}"></span>
+
+</p>
+
+<h3 class="text-success">
+
+₹<span th:text="${product.price}"></span>
+
+</h3>
+
+<div class="d-grid gap-2 mt-3">
+
+<a th:href="@{'/viewProduct/' + ${product.productId}}"
+
+class="btn btn-primary">
+
+<i class="bi bi-eye-fill"></i>
+
+View Details
+
+</a>
+
+<a th:href="@{'/cart/add/' + ${product.productId}}"
+
+class="btn btn-warning">
+
+<i class="bi bi-cart-plus-fill"></i>
+
+Add To Cart
+
+</a>
+
+<a th:href="@{'/buyNow/' + ${product.productId}}"
+
+class="btn btn-success">
+
+<i class="bi bi-bag-check-fill"></i>
+
+Buy Now
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= TOP BRANDS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title">
+Popular Brands
+</h2>
+
+<div class="row text-center g-4">
+
+<div class="col">
+<div class="card p-4">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg"
+     class="img-fluid"
+     style="height:60px;">
+</div>
+</div>
+
+<div class="col">
+<div class="card p-4">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg"
+     class="img-fluid"
+     style="height:60px;">
+</div>
+</div>
+
+
+
+<div class="col">
+<div class="card p-4">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Zara_Logo.svg"
+     class="img-fluid"
+     style="height:60px;">
+</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FLASH DEAL ================= -->
+
+<div class="container mt-5">
+
+<div class="card bg-danger text-white p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<h1>
+
+🔥 Flash Deal
+
+</h1>
+
+<h3>
+
+Buy Sustainable Fashion
+
+</h3>
+
+<p>
+
+Limited Time Offer on Premium Clothes
+
+</p>
+
+</div>
+
+<div class="col-lg-4 text-end">
+
+<a th:href="@{/marketplace}"
+
+class="btn btn-light btn-lg">
+
+Shop Now
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= RECENT ARRIVALS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title">
+
+Recently Uploaded
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800"
+
+style="height:250px;object-fit:cover;">
+
+<div class="card-body">
+
+<h4>T-Shirts</h4>
+
+<p>Freshly uploaded products.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800"
+
+style="height:250px;object-fit:cover;">
+
+<div class="card-body">
+
+<h4>Jeans</h4>
+
+<p>Latest fashion arrivals.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800"
+
+style="height:250px;object-fit:cover;">
+
+<div class="card-body">
+
+<h4>Dresses</h4>
+
+<p>Trending collections.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= QUICK ACTIONS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title">
+What would you like to do?
+</h2>
+
+<div class="row g-4">
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card text-center p-4 h-100">
+
+<i class="bi bi-bag-plus-fill text-success"
+style="font-size:60px;"></i>
+
+<h3 class="mt-3">Sell Clothes</h3>
+
+<p>
+Earn money by selling your unused clothes.
+</p>
+
+<a th:href="@{/upload-clothes}"
+class="btn btn-success">
+
+Start Selling
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card text-center p-4 h-100">
+
+<i class="bi bi-heart-fill text-danger"
+style="font-size:60px;"></i>
+
+<h3 class="mt-3">Donate</h3>
+
+<p>
+Donate clothes and help someone in need.
+</p>
+
+<a th:href="@{/donate-clothes}"
+class="btn btn-danger">
+
+Donate Now
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card text-center p-4 h-100">
+
+<i class="bi bi-arrow-repeat text-primary"
+style="font-size:60px;"></i>
+
+<h3 class="mt-3">Exchange</h3>
+
+<p>
+Swap your clothes with another user.
+</p>
+
+<a th:href="@{/exchange}"
+class="btn btn-primary">
+
+Exchange
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card text-center p-4 h-100">
+
+<i class="bi bi-shop-window text-warning"
+style="font-size:60px;"></i>
+
+<h3 class="mt-3">Marketplace</h3>
+
+<p>
+Explore thousands of sustainable products.
+</p>
+
+<a th:href="@{/marketplace}"
+class="btn btn-warning">
+
+Browse
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= IMPACT ================= -->
+
+<div class="container mt-5">
+
+<div class="card p-5 bg-success text-white">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<h1>
+🌍 Together We Make A Difference
+</h1>
+
+<p class="fs-5">
+
+Every reused cloth saves water,
+reduces pollution and keeps textile
+waste away from landfills.
+
+</p>
+
+</div>
+
+<div class="col-lg-4 text-center">
+
+<i class="bi bi-globe2"
+style="font-size:120px;"></i>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= STATISTICS ================= -->
+
+
+<div class="container mt-5">
+
+<h2 class="section-title text-center">
+
+Platform Statistics
+
+</h2>
+
+<div class="row text-center g-4">
+
+<div class="col-md-3">
+
+<div class="card p-4">
+
+<h1 class="text-success"
+    th:text="${totalProducts}">
+    0
+</h1>
+
+<h5>
+
+Products Listed
+
+</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-4">
+
+<h1 class="text-primary"
+    th:text="${totalUsers}">
+    0
+</h1>
+
+<h5>
+
+Registered Users
+
+</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-4">
+
+<h1 class="text-danger"
+    th:text="${totalExchanges}">
+    0
+</h1>
+
+<h5>
+
+Successful Exchanges
+
+</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-4">
+
+<h1 class="text-warning"
+    th:text="${totalOrders}">
+    0
+</h1>
+
+<h5>
+
+Orders Placed
+
+</h5>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= WHY REWEAR ================= -->
+
+<div class="container mt-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<img
+
+src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1000"
+
+class="img-fluid rounded-4 shadow">
+
+</div>
+
+<div class="col-lg-6">
+
+<h2 class="section-title">
+
+Why Choose ReWear?
+
+</h2>
+
+<ul class="list-group list-group-flush">
+
+<li class="list-group-item">
+
+♻ Eco-Friendly Fashion
+
+</li>
+
+<li class="list-group-item">
+
+💰 Earn Money by Selling Clothes
+
+</li>
+
+<li class="list-group-item">
+
+❤️ Donate to NGOs
+
+</li>
+
+<li class="list-group-item">
+
+🔄 Exchange with Other Users
+
+</li>
+
+<li class="list-group-item">
+
+🌍 Help Reduce Textile Waste
+
+</li>
+
+<li class="list-group-item">
+
+👕 Thousands of Products
+
+</li>
+
+<li class="list-group-item">
+
+🔒 Safe & Secure Platform
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= CUSTOMER REVIEWS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title text-center">
+
+What Our Users Say
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-lg-4">
+
+<div class="card p-4 text-center h-100">
+
+<img src="https://i.pravatar.cc/120?img=11"
+
+class="rounded-circle mx-auto mb-3"
+
+width="90">
+
+<h4>Priya Sharma</h4>
+
+<h5 class="text-warning">
+
+★★★★★
+
+</h5>
+
+<p>
+
+I sold my unused clothes in just 2 days.
+The process was smooth and easy.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card p-4 text-center h-100">
+
+<img src="https://i.pravatar.cc/120?img=25"
+
+class="rounded-circle mx-auto mb-3"
+
+width="90">
+
+<h4>Rahul Patil</h4>
+
+<h5 class="text-warning">
+
+★★★★★
+
+</h5>
+
+<p>
+
+Loved the Exchange feature.
+Saved money and helped the environment.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card p-4 text-center h-100">
+
+<img src="https://i.pravatar.cc/120?img=33"
+
+class="rounded-circle mx-auto mb-3"
+
+width="90">
+
+<h4>Sneha Joshi</h4>
+
+<h5 class="text-warning">
+
+★★★★★
+
+</h5>
+
+<p>
+
+Donating clothes through ReWear
+was quick and satisfying.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FASHION TIPS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title">
+
+Latest Fashion Tips
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800"
+
+style="height:230px;object-fit:cover;">
+
+<div class="card-body">
+
+<h4>Reuse Your Wardrobe</h4>
+
+<p>
+
+Style your old clothes in new ways and reduce waste.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800"
+
+style="height:230px;object-fit:cover;">
+
+<div class="card-body">
+
+<h4>Sustainable Fashion</h4>
+
+<p>
+
+Choose quality clothing that lasts longer.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800"
+
+style="height:230px;object-fit:cover;">
+
+<div class="card-body">
+
+<h4>Minimal Wardrobe</h4>
+
+<p>
+
+Buy smart, exchange often and reduce textile waste.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= NEWSLETTER ================= -->
+
+<div class="container mt-5">
+
+<div class="card p-5 text-center bg-primary text-white">
+
+<h2>
+
+Subscribe to Our Newsletter
+
+</h2>
+
+<p>
+
+Get updates about new arrivals,
+offers and sustainability tips.
+
+</p>
+
+<div class="row justify-content-center">
+
+<div class="col-lg-6">
+
+<input
+
+type="email"
+
+class="form-control mb-3"
+
+placeholder="Enter your email">
+
+<button class="btn btn-light btn-lg w-100">
+
+Subscribe
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= MOBILE APP ================= -->
+
+<div class="container mt-5">
+
+<div class="card p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<h2 class="section-title">
+
+Download ReWear App
+
+</h2>
+
+<p class="fs-5">
+
+Shop, Sell, Donate and Exchange
+Clothes Anywhere.
+
+</p>
+
+<div class="mt-4">
+
+<button class="btn btn-dark btn-lg me-3">
+
+<i class="bi bi-google-play"></i>
+
+Google Play
+
+</button>
+
+<button class="btn btn-dark btn-lg">
+
+<i class="bi bi-apple"></i>
+
+App Store
+
+</button>
+
+</div>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img
+
+src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900"
+
+class="img-fluid rounded-4">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="bg-dark text-white mt-5">
+
+<div class="container py-5">
+
+<div class="row">
+
+<!-- About -->
+
+<div class="col-lg-4 mb-4">
+
+<h3 class="fw-bold">
+
+♻ ReWear
+
+</h3>
+
+<p>
+
+Giving Every Thread a Second Life.
+
+ReWear helps people Buy, Sell, Donate and Exchange clothes while promoting sustainable fashion.
+
+</p>
+
+<div class="mt-3">
+
+<a href="#" class="text-white fs-3 me-3">
+
+<i class="bi bi-facebook"></i>
+
+</a>
+
+<a href="#" class="text-white fs-3 me-3">
+
+<i class="bi bi-instagram"></i>
+
+</a>
+
+<a href="#" class="text-white fs-3 me-3">
+
+<i class="bi bi-twitter-x"></i>
+
+</a>
+
+<a href="#" class="text-white fs-3">
+
+<i class="bi bi-linkedin"></i>
+
+</a>
+
+</div>
+
+</div>
+
+<!-- Quick Links -->
+
+<div class="col-lg-2 mb-4">
+
+<h5>
+
+Quick Links
+
+</h5>
+
+<ul class="list-unstyled">
+
+<li>
+
+<a th:href="@{/user-dashboard}"
+
+class="text-white text-decoration-none">
+
+Home
+
+</a>
+
+</li>
+
+<li>
+
+<a th:href="@{/marketplace}"
+
+class="text-white text-decoration-none">
+
+Marketplace
+
+</a>
+
+</li>
+
+<li>
+
+<a th:href="@{/wishlist}"
+
+class="text-white text-decoration-none">
+
+Wishlist
+
+</a>
+
+</li>
+
+<li>
+
+<a th:href="@{/cart}"
+
+class="text-white text-decoration-none">
+
+Cart
+
+</a>
+
+</li>
+
+<li>
+
+<a th:href="@{/orders}"
+
+class="text-white text-decoration-none">
+
+Orders
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+<!-- Services -->
+
+<div class="col-lg-3 mb-4">
+
+<h5>
+
+Services
+
+</h5>
+
+<ul class="list-unstyled">
+
+<li>✔ Buy Clothes</li>
+
+<li>✔ Sell Clothes</li>
+
+<li>✔ Donate Clothes</li>
+
+<li>✔ Exchange Clothes</li>
+
+<li>✔ Sustainable Fashion</li>
+
+</ul>
+
+</div>
+
+<!-- Contact -->
+
+<div class="col-lg-3">
+
+<h5>
+
+Contact
+
+</h5>
+
+<p>
+
+<i class="bi bi-geo-alt-fill"></i>
+
+Pune, Maharashtra
+
+</p>
+
+<p>
+
+<i class="bi bi-envelope-fill"></i>
+
+support@rewear.com
+
+</p>
+
+<p>
+
+<i class="bi bi-telephone-fill"></i>
+
++91 9876543210
+
+</p>
+
+<p>
+
+<i class="bi bi-clock-fill"></i>
+
+Mon - Sat : 9 AM - 7 PM
+
+</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<p>
+
+© 2026 ReWear.
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+<div class="col-md-6 text-md-end">
+
+<p>
+
+Made with ❤️ for Sustainable Fashion
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- ================= BACK TO TOP ================= -->
+
+<button
+
+onclick="window.scrollTo({top:0,behavior:'smooth'})"
+
+class="btn btn-success rounded-circle"
+
+style="position:fixed;
+bottom:25px;
+right:25px;
+width:55px;
+height:55px;">
+
+<i class="bi bi-arrow-up"></i>
+
+</button>
+
+<!-- ================= BOOTSTRAP ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+

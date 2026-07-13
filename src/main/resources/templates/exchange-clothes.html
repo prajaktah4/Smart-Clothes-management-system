@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Exchange Clothes | ReWear</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+body{
+    background:#f8f9fa;
+    font-family:'Poppins',sans-serif;
+}
+
+.navbar{
+    background:#198754;
+}
+
+.hero{
+
+    background:linear-gradient(135deg,#198754,#34c759);
+
+    color:white;
+
+    padding:60px;
+
+    border-radius:20px;
+
+    margin:30px 0;
+
+}
+
+.hero h1{
+
+    font-size:45px;
+
+    font-weight:bold;
+
+}
+
+.hero p{
+
+    font-size:18px;
+
+}
+
+.search-box{
+
+    border-radius:40px;
+
+    height:55px;
+
+}
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.18);
+
+}
+
+.card img{
+
+    height:240px;
+
+    object-fit:cover;
+
+}
+
+.price{
+
+    color:#198754;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+}
+
+.badge-purpose{
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    padding:8px 14px;
+
+}
+
+footer{
+
+    background:#198754;
+
+    color:white;
+
+    padding:40px;
+
+    margin-top:60px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+<div class="container">
+
+<a class="navbar-brand fw-bold"
+th:href="@{/user-dashboard}">
+
+<i class="bi bi-recycle"></i>
+
+ReWear
+
+</a>
+
+<div class="ms-auto">
+
+<a class="btn btn-light me-2"
+th:href="@{/marketplace}">
+
+<i class="bi bi-shop"></i>
+
+Marketplace
+
+</a>
+
+<a class="btn btn-warning me-2"
+th:href="@{/cart}">
+
+<i class="bi bi-cart-fill"></i>
+
+Cart
+
+</a>
+
+<a class="btn btn-danger"
+th:href="@{/wishlist}">
+
+<i class="bi bi-heart-fill"></i>
+
+Wishlist
+
+</a>
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="container">
+
+<div class="hero text-center">
+
+<h1>
+
+<i class="bi bi-arrow-repeat"></i>
+
+Exchange Clothes
+
+</h1>
+
+<p>
+
+Exchange clothes with other users and promote sustainable fashion.
+
+</p>
+
+<form class="row justify-content-center mt-4">
+
+<div class="col-md-6">
+
+<input
+type="text"
+class="form-control search-box"
+placeholder="Search exchange clothes...">
+
+</div>
+
+<div class="col-auto">
+
+<button class="btn btn-warning btn-lg">
+
+<i class="bi bi-search"></i>
+
+Search
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+<div class="row">
+
+	<!-- No Exchange Products -->
+
+	<div class="col-12"
+
+	th:if="${#lists.isEmpty(products)}">
+
+	<div class="alert alert-info text-center p-5">
+
+	<h3>
+
+	<i class="bi bi-arrow-repeat"></i>
+
+	No Exchange Clothes Available
+
+	</h3>
+
+	<p>
+
+	No products are currently available for exchange.
+
+	</p>
+
+	<a th:href="@{/upload-clothes}"
+
+	class="btn btn-success">
+
+	<i class="bi bi-cloud-upload-fill"></i>
+
+	Upload Your Clothes
+
+	</a>
+
+	</div>
+
+	</div>
+
+	<!-- Exchange Products -->
+
+	<div class="col-xl-3 col-lg-4 col-md-6 mb-4"
+
+	th:each="product : ${products}">
+
+	<div class="card h-100">
+
+	<img
+	th:src="@{'/uploads/' + ${product.imageName}}"
+	class="card-img-top"
+	alt="Product Image">
+
+	<div class="card-body">
+
+	<div class="d-flex justify-content-between">
+
+	<h5 class="fw-bold"
+
+	th:text="${product.productName}">
+
+	Product
+
+	</h5>
+
+	<span class="badge bg-success badge-purpose">
+
+	Exchange
+
+	</span>
+
+	</div>
+
+	<hr>
+
+	<p>
+
+	<i class="bi bi-tag-fill text-primary"></i>
+
+	<b> Category :</b>
+
+	<span th:text="${product.category}">
+
+	Men
+
+	</span>
+
+	</p>
+
+	<p>
+
+	<i class="bi bi-award-fill text-warning"></i>
+
+	<b> Brand :</b>
+
+	<span th:text="${product.brand}">
+
+	Nike
+
+	</span>
+
+	</p>
+
+	<p>
+
+	<i class="bi bi-rulers text-success"></i>
+
+	<b> Size :</b>
+
+	<span th:text="${product.size}">
+
+	L
+
+	</span>
+
+	</p>
+
+	<p>
+
+	<i class="bi bi-patch-check-fill text-info"></i>
+
+	<b> Condition :</b>
+
+	<span th:text="${product.condition}">
+
+	Good
+
+	</span>
+
+	</p>
+
+	<p>
+
+	<i class="bi bi-arrow-repeat text-success"></i>
+
+	<b> Purpose :</b>
+
+	<span class="badge bg-success"
+
+	th:text="${product.purpose}">
+
+	Exchange
+
+	</span>
+
+	</p>
+
+	<p class="price">
+
+	₹<span th:text="${product.price}">
+
+	0
+
+	</span>
+
+	</p>
+
+	<div class="d-grid gap-2 mt-3">
+
+	<a th:href="@{'/viewProduct/' + ${product.productId}}"
+
+	class="btn btn-primary">
+
+	<i class="bi bi-eye-fill"></i>
+
+	View Details
+
+	</a>
+
+	<a th:href="@{'/exchange/request/' + ${product.productId}}"
+
+	class="btn btn-success">
+
+	<i class="bi bi-arrow-left-right"></i>
+
+	Exchange Request
+
+	</a>
+
+	</div>
+
+	</div>
+
+	</div>
+
+	</div>
+	
+	</div>
+
+	<!-- Exchange Statistics -->
+
+	<div class="container mt-5">
+
+	<div class="row text-center">
+
+	<div class="col-md-3 mb-3">
+
+	<div class="card p-4">
+
+	<i class="bi bi-arrow-repeat text-success fs-1"></i>
+
+	<h2 th:text="${products.size()}">0</h2>
+
+	<p>Total Exchange Items</p>
+
+	</div>
+
+	</div>
+
+	<div class="col-md-3 mb-3">
+
+	<div class="card p-4">
+
+	<i class="bi bi-people-fill text-primary fs-1"></i>
+
+	<h2>100+</h2>
+
+	<p>Active Users</p>
+
+	</div>
+
+	</div>
+
+	<div class="col-md-3 mb-3">
+
+	<div class="card p-4">
+
+	<i class="bi bi-recycle text-success fs-1"></i>
+
+	<h2>Eco</h2>
+
+	<p>Sustainable Fashion</p>
+
+	</div>
+
+	</div>
+
+	<div class="col-md-3 mb-3">
+
+	<div class="card p-4">
+
+	<i class="bi bi-shield-check text-warning fs-1"></i>
+
+	<h2>100%</h2>
+
+	<p>Secure Exchange</p>
+
+	</div>
+
+	</div>
+
+	</div>
+
+	</div>
+
+	<!-- Footer -->
+
+	<footer>
+
+	<div class="container">
+
+	<div class="row">
+
+	<div class="col-md-4">
+
+	<h4>
+
+	<i class="bi bi-recycle"></i>
+
+	ReWear
+
+	</h4>
+
+	<p>
+
+	Giving Every Thread a Second Life.
+
+	</p>
+
+	</div>
+
+	<div class="col-md-4">
+
+	<h5>Quick Links</h5>
+
+	<ul class="list-unstyled">
+
+	<li>
+	<a th:href="@{/marketplace}" class="text-white text-decoration-none">
+	Marketplace
+	</a>
+	</li>
+
+	<li>
+	<a th:href="@{/exchange}" class="text-white text-decoration-none">
+	Exchange
+	</a>
+	</li>
+
+	<li>
+	<a th:href="@{/donate-clothes}" class="text-white text-decoration-none">
+	Donate
+	</a>
+	</li>
+
+	<li>
+	<a th:href="@{/wishlist}" class="text-white text-decoration-none">
+	Wishlist
+	</a>
+	</li>
+
+	</ul>
+
+	</div>
+
+	<div class="col-md-4">
+
+	<h5>Contact</h5>
+
+	<p>
+
+	<i class="bi bi-envelope-fill"></i>
+
+	support@rewear.com
+
+	</p>
+
+	<p>
+
+	<i class="bi bi-telephone-fill"></i>
+
+	+91 9876543210
+
+	</p>
+
+	<p>
+
+	<i class="bi bi-geo-alt-fill"></i>
+
+	Pune, Maharashtra
+
+	</p>
+
+	</div>
+
+	</div>
+
+	<hr>
+
+	<div class="text-center">
+
+	<p class="mb-0">
+
+	© 2026 ReWear | Smart Clothes Reuse Platform
+
+	</p>
+
+	</div>
+
+	</div>
+
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	</body>
+
+	</html>		
+	

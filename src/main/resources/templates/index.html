@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>ReWear | Giving Every Thread a Second Life</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f8f9fb;
+overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+background:#ffffff;
+box-shadow:0 2px 15px rgba(0,0,0,.08);
+padding:15px 0;
+}
+
+.logo{
+font-size:34px;
+font-weight:bold;
+color:#198754;
+text-decoration:none;
+}
+
+.search-box{
+
+height:48px;
+border-radius:30px;
+border:none;
+background:#eef2f7;
+padding-left:20px;
+
+}
+
+.search-box:focus{
+
+box-shadow:none;
+background:#fff;
+
+}
+
+.nav-icon{
+
+font-size:24px;
+color:#333;
+margin-left:18px;
+transition:.3s;
+
+}
+
+.nav-icon:hover{
+
+color:#198754;
+transform:scale(1.15);
+
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+margin-top:30px;
+background:linear-gradient(135deg,#198754,#49c977);
+border-radius:30px;
+padding:60px;
+color:white;
+overflow:hidden;
+
+}
+
+.hero h1{
+
+font-size:55px;
+font-weight:bold;
+
+}
+
+.hero p{
+
+font-size:20px;
+margin-top:15px;
+
+}
+
+.hero-btn{
+
+padding:12px 35px;
+border-radius:30px;
+font-size:18px;
+font-weight:bold;
+
+}
+
+.hero-img{
+
+width:100%;
+border-radius:20px;
+
+}
+
+/* ================= CATEGORY ================= */
+
+.section-title{
+
+font-size:34px;
+font-weight:bold;
+margin-bottom:35px;
+
+}
+
+.category-card{
+
+background:white;
+padding:20px;
+border-radius:20px;
+text-align:center;
+transition:.4s;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+cursor:pointer;
+
+}
+
+.category-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.category-card img{
+
+width:85px;
+height:85px;
+border-radius:50%;
+object-fit:cover;
+
+}
+
+.category-card h5{
+
+margin-top:15px;
+font-weight:600;
+
+}
+
+/* ================= COMMON ================= */
+
+.card{
+
+border:none;
+border-radius:22px;
+transition:.4s;
+overflow:hidden;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.btn{
+
+border-radius:30px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg">
+
+<div class="container">
+
+<a class="logo"
+th:href="@{/user-dashboard}">
+
+♻ ReWear
+
+</a>
+
+<div class="w-50">
+
+<input
+type="text"
+class="form-control search-box"
+placeholder="Search clothes...">
+
+</div>
+
+<div>
+
+<a th:href="@{/marketplace}" class="nav-icon">
+
+<i class="bi bi-shop"></i>
+
+</a>
+
+<a th:href="@{/wishlist}" class="nav-icon">
+
+<i class="bi bi-heart"></i>
+
+</a>
+
+<a th:href="@{/cart}" class="nav-icon">
+
+<i class="bi bi-cart3"></i>
+
+</a>
+
+<a th:href="@{/profile}" class="nav-icon">
+
+<i class="bi bi-person-circle"></i>
+
+</a>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<div class="container">
+
+<div class="hero">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<h1>
+
+Give Every Thread a Second Life
+
+</h1>
+
+<p>
+
+Buy • Sell • Donate • Exchange Clothes Sustainably
+
+</p>
+
+<br>
+
+<a th:href="@{/marketplace}"
+class="btn btn-light hero-btn">
+
+Explore Marketplace
+
+</a>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img
+
+src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900"
+
+class="hero-img">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= CATEGORY ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title">
+
+Shop by Category
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-lg-2 col-md-4 col-6">
+
+<div class="category-card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/892/892458.png">
+
+<h5>Men</h5>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 col-6">
+
+<div class="category-card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/892/892462.png">
+
+<h5>Women</h5>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 col-6">
+
+<div class="category-card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/892/892468.png">
+
+<h5>Kids</h5>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 col-6">
+
+<div class="category-card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
+
+<h5>Shoes</h5>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 col-6">
+
+<div class="category-card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3082/3082037.png">
+
+<h5>Bags</h5>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4 col-6">
+
+<div class="category-card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png">
+
+<h5>Accessories</h5>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FEATURED PRODUCTS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title">
+
+Featured Products
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-xl-3 col-lg-4 col-md-6"
+
+th:each="product : ${products}">
+
+<div class="card h-100">
+
+<img th:src="@{'/uploads/' + ${product.imageName}}"
+
+class="card-img-top"
+
+style="height:300px;object-fit:cover;">
+
+<div class="card-body">
+
+<div class="d-flex justify-content-between">
+
+<h5 th:text="${product.productName}"></h5>
+
+<a th:href="@{'/wishlist/add/' + ${product.productId}}">
+
+<i class="bi bi-heart-fill text-danger fs-4"></i>
+
+</a>
+
+</div>
+
+<hr>
+
+<p>
+
+<b>Brand :</b>
+
+<span th:text="${product.brand}"></span>
+
+</p>
+
+<p>
+
+<b>Category :</b>
+
+<span th:text="${product.category}"></span>
+
+</p>
+
+<p>
+
+<b>Size :</b>
+
+<span th:text="${product.size}"></span>
+
+</p>
+
+<p>
+
+<b>Condition :</b>
+
+<span th:text="${product.condition}"></span>
+
+</p>
+
+<h3 class="text-success">
+
+₹<span th:text="${product.price}"></span>
+
+</h3>
+
+<div class="d-grid gap-2 mt-3">
+
+<a th:href="@{'/viewProduct/' + ${product.productId}}"
+
+class="btn btn-primary">
+
+<i class="bi bi-eye-fill"></i>
+
+View Details
+
+</a>
+
+<a th:href="@{'/cart/add/' + ${product.productId}}"
+
+class="btn btn-warning">
+
+<i class="bi bi-cart-plus-fill"></i>
+
+Add To Cart
+
+</a>
+
+<a th:href="@{'/buyNow/' + ${product.productId}}"
+
+class="btn btn-success">
+
+<i class="bi bi-bag-check-fill"></i>
+
+Buy Now
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= TRENDING COLLECTIONS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title">
+
+🔥 Trending Collections
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700"
+
+style="height:300px;object-fit:cover;">
+
+<div class="card-body text-center">
+
+<h4>T-Shirts</h4>
+
+<a href="/marketplace"
+
+class="btn btn-success">
+
+Shop Now
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=700"
+
+style="height:300px;object-fit:cover;">
+
+<div class="card-body text-center">
+
+<h4>Jeans</h4>
+
+<a href="/marketplace"
+
+class="btn btn-success">
+
+Shop Now
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700"
+
+style="height:300px;object-fit:cover;">
+
+<div class="card-body text-center">
+
+<h4>Dresses</h4>
+
+<a href="/marketplace"
+
+class="btn btn-success">
+
+Shop Now
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700"
+
+style="height:300px;object-fit:cover;">
+
+<div class="card-body text-center">
+
+<h4>Jackets</h4>
+
+<a href="/marketplace"
+
+class="btn btn-success">
+
+Shop Now
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= QUICK ACTIONS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title">
+
+Quick Actions
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<div class="card text-center p-4">
+
+<i class="bi bi-bag-plus-fill text-success"
+
+style="font-size:55px;"></i>
+
+<h3 class="mt-3">
+
+Sell Clothes
+
+</h3>
+
+<p>
+
+Earn money from your unused clothes.
+
+</p>
+
+<a th:href="@{/sell-clothes}"
+
+class="btn btn-success">
+
+Sell Now
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center p-4">
+
+<i class="bi bi-heart-fill text-danger"
+
+style="font-size:55px;"></i>
+
+<h3 class="mt-3">
+
+Donate
+
+</h3>
+
+<p>
+
+Help people by donating clothes.
+
+</p>
+
+<a th:href="@{/donate-clothes}"
+
+class="btn btn-danger">
+
+Donate Now
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center p-4">
+
+<i class="bi bi-arrow-repeat text-primary"
+
+style="font-size:55px;"></i>
+
+<h3 class="mt-3">
+
+Exchange
+
+</h3>
+
+<p>
+
+Swap clothes sustainably.
+
+</p>
+
+<a th:href="@{/exchange}"
+
+class="btn btn-primary">
+
+Exchange
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center p-4">
+
+<i class="bi bi-shop-window text-warning"
+
+style="font-size:55px;"></i>
+
+<h3 class="mt-3">
+
+Marketplace
+
+</h3>
+
+<p>
+
+Browse thousands of clothes.
+
+</p>
+
+<a th:href="@{/marketplace}"
+
+class="btn btn-warning">
+
+Explore
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= STATISTICS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title text-center">
+Our Impact
+</h2>
+
+<div class="row text-center g-4">
+
+<div class="col-md-3">
+
+<div class="card p-4">
+
+<h1 class="text-success">500+</h1>
+
+<h5>Products Listed</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-4">
+
+<h1 class="text-primary">1200+</h1>
+
+<h5>Happy Users</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-4">
+
+<h1 class="text-danger">350+</h1>
+
+<h5>Successful Exchanges</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-4">
+
+<h1 class="text-warning">4.9 ★</h1>
+
+<h5>User Rating</h5>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= WHY REWEAR ================= -->
+
+<div class="container mt-5">
+
+<div class="card p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<h2 class="section-title">
+
+Why Choose ReWear?
+
+</h2>
+
+<p class="fs-5">
+
+♻ Give your clothes a second life and reduce textile waste.
+
+</p>
+
+<p class="fs-5">
+
+💰 Earn money by selling unused clothes.
+
+</p>
+
+<p class="fs-5">
+
+❤️ Donate to people who need them.
+
+</p>
+
+<p class="fs-5">
+
+🔄 Exchange outfits without buying new ones.
+
+</p>
+
+<p class="fs-5">
+
+🌍 Help build a sustainable future.
+
+</p>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img
+
+src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=900"
+
+class="img-fluid rounded-4 shadow">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= CUSTOMER REVIEWS ================= -->
+
+<div class="container mt-5">
+
+<h2 class="section-title text-center">
+
+Customer Reviews
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+
+<div class="card p-4 text-center">
+
+<img src="https://i.pravatar.cc/120?img=15"
+
+class="rounded-circle mx-auto mb-3"
+
+width="90">
+
+<h5>Priya</h5>
+
+<p>
+
+⭐⭐⭐⭐⭐
+
+</p>
+
+<p>
+
+Amazing platform! I sold my unused clothes within a week.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-4 text-center">
+
+<img src="https://i.pravatar.cc/120?img=25"
+
+class="rounded-circle mx-auto mb-3"
+
+width="90">
+
+<h5>Rahul</h5>
+
+<p>
+
+⭐⭐⭐⭐⭐
+
+</p>
+
+<p>
+
+Loved the exchange feature. Easy and eco-friendly.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-4 text-center">
+
+<img src="https://i.pravatar.cc/120?img=35"
+
+class="rounded-circle mx-auto mb-3"
+
+width="90">
+
+<h5>Sneha</h5>
+
+<p>
+
+⭐⭐⭐⭐⭐
+
+</p>
+
+<p>
+
+Donated clothes easily. Great initiative.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= NEWSLETTER ================= -->
+
+<div class="container mt-5">
+
+<div class="card p-5 text-center">
+
+<h2>
+
+Stay Updated
+
+</h2>
+
+<p>
+
+Get updates about new arrivals and sustainability tips.
+
+</p>
+
+<div class="row justify-content-center">
+
+<div class="col-md-6">
+
+<input
+
+type="email"
+
+class="form-control mb-3"
+
+placeholder="Enter your email">
+
+<button class="btn btn-success btn-lg w-100">
+
+Subscribe
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="bg-dark text-white mt-5">
+
+<div class="container py-5">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<h3>
+
+♻ ReWear
+
+</h3>
+
+<p>
+
+Giving Every Thread a Second Life.
+
+</p>
+
+</div>
+
+<div class="col-md-4">
+
+<h5>
+
+Quick Links
+
+</h5>
+
+<p><a class="text-white text-decoration-none" th:href="@{/marketplace}">Marketplace</a></p>
+
+<p><a class="text-white text-decoration-none" th:href="@{/wishlist}">Wishlist</a></p>
+
+<p><a class="text-white text-decoration-none" th:href="@{/cart}">Cart</a></p>
+
+<p><a class="text-white text-decoration-none" th:href="@{/profile}">Profile</a></p>
+
+</div>
+
+<div class="col-md-4">
+
+<h5>
+
+Contact
+
+</h5>
+
+<p>📧 support@rewear.com</p>
+
+<p>📍 Pune, Maharashtra</p>
+
+<p>📞 +91 9876543210</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="text-center">
+
+© 2026 ReWear | Sustainable Fashion Marketplace
+
+</div>
+
+</div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>My Wishlist | ReWear</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+body{
+    background:#f5f7fa;
+    font-family:'Poppins',sans-serif;
+}
+
+.navbar{
+    background:#198754;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+}
+
+.card img{
+    height:230px;
+    object-fit:cover;
+}
+
+.price{
+    color:#198754;
+    font-size:28px;
+    font-weight:bold;
+}
+
+footer{
+    background:#198754;
+    color:white;
+    margin-top:60px;
+    padding:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark">
+
+<div class="container">
+
+<a class="navbar-brand"
+th:href="@{/marketplace}">
+
+<i class="bi bi-arrow-left-circle"></i>
+
+Marketplace
+
+</a>
+
+<span class="navbar-text text-white">
+
+<i class="bi bi-heart-fill"></i>
+
+My Wishlist
+
+</span>
+
+</div>
+
+</nav>
+
+<div class="container py-5">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>
+
+<i class="bi bi-heart-fill text-danger"></i>
+
+My Wishlist
+
+</h2>
+
+<a th:href="@{/marketplace}"
+
+class="btn btn-success">
+
+<i class="bi bi-shop"></i>
+
+Continue Shopping
+
+</a>
+
+</div>
+
+<!-- Empty Wishlist -->
+
+<div class="alert alert-info text-center"
+
+th:if="${#lists.isEmpty(wishlistItems)}">
+
+<h3>
+
+No Products in Wishlist
+
+</h3>
+
+<p>
+
+Your wishlist is currently empty.
+
+</p>
+
+<a th:href="@{/marketplace}"
+
+class="btn btn-success">
+
+Browse Products
+
+</a>
+
+</div>
+
+<div class="row">
+	
+	<!-- Wishlist Products -->
+
+	<div class="col-lg-4 col-md-6 mb-4"
+
+	     th:each="wish : ${wishlistItems}">
+
+	    <div class="card h-100">
+
+	        <!-- Product Image -->
+
+	        <img th:src="@{'/uploads/' + ${wish.product.imageName}}"
+	             class="card-img-top"
+	             alt="Product Image">
+
+	        <div class="card-body">
+
+	            <div class="d-flex justify-content-between align-items-center">
+
+	                <h4 th:text="${wish.product.productName}">
+	                    Product Name
+	                </h4>
+
+	                <span class="badge bg-danger">
+	                    <i class="bi bi-heart-fill"></i>
+	                </span>
+
+	            </div>
+
+	            <hr>
+
+	            <p>
+	                <i class="bi bi-tag-fill text-primary"></i>
+	                <b> Category :</b>
+	                <span th:text="${wish.product.category}"></span>
+	            </p>
+
+	            <p>
+	                <i class="bi bi-award-fill text-warning"></i>
+	                <b> Brand :</b>
+	                <span th:text="${wish.product.brand}"></span>
+	            </p>
+
+	            <p>
+	                <i class="bi bi-rulers text-success"></i>
+	                <b> Size :</b>
+	                <span th:text="${wish.product.size}"></span>
+	            </p>
+
+	            <p>
+	                <i class="bi bi-patch-check-fill text-info"></i>
+	                <b> Condition :</b>
+	                <span th:text="${wish.product.condition}"></span>
+	            </p>
+
+	            <p>
+	                <i class="bi bi-arrow-repeat text-secondary"></i>
+	                <b> Purpose :</b>
+
+	                <span class="badge bg-primary"
+	                      th:text="${wish.product.purpose}">
+	                </span>
+
+	            </p>
+
+	            <h3 class="price">
+
+	                ₹<span th:text="${wish.product.price}">
+	                    0
+	                </span>
+
+	            </h3>
+
+	            <div class="d-grid gap-2 mt-3">
+
+	                <!-- View -->
+
+	                <a th:href="@{'/viewProduct/' + ${wish.product.productId}}"
+	                   class="btn btn-primary">
+
+	                    <i class="bi bi-eye-fill"></i>
+
+	                    View Details
+
+	                </a>
+
+	                <!-- Move to Cart -->
+
+					<a th:href="@{'/wishlist/cart/' + ${wish.wishlistId}}"
+					   class="btn btn-warning">
+
+					    <i class="bi bi-cart-plus-fill"></i>
+
+					    Move to Cart
+
+					</a>
+
+	                <!-- Remove -->
+
+	                <a th:href="@{'/wishlist/delete/' + ${wish.wishlistId}}"
+	                   class="btn btn-outline-danger"
+	                   onclick="return confirm('Remove this item from wishlist?')">
+
+	                    <i class="bi bi-trash-fill"></i>
+
+	                    Remove
+
+	                </a>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+	
+	</div>
+
+	<!-- Wishlist Summary -->
+
+	<div class="card mt-5 p-4 shadow-sm">
+
+	    <div class="row text-center">
+
+	        <div class="col-md-4">
+
+	            <h3 class="text-success"
+	                th:text="${wishlistItems.size()}">
+	                0
+	            </h3>
+
+	            <p>Total Wishlist Items</p>
+
+	        </div>
+
+	        <div class="col-md-4">
+
+	            <h3 class="text-danger">
+	                <i class="bi bi-heart-fill"></i>
+	            </h3>
+
+	            <p>Saved Favorites</p>
+
+	        </div>
+
+	        <div class="col-md-4">
+
+	            <a th:href="@{/marketplace}"
+	               class="btn btn-success btn-lg">
+
+	                <i class="bi bi-shop"></i>
+
+	                Continue Shopping
+
+	            </a>
+
+	        </div>
+
+	    </div>
+
+	</div>
+
+	</div>
+
+	<!-- Footer -->
+
+	<footer>
+
+	<div class="container text-center">
+
+	<h4>
+
+	<i class="bi bi-recycle"></i>
+
+	ReWear Wishlist
+
+	</h4>
+
+	<p>
+
+	Save your favourite clothes and purchase them later.
+
+	</p>
+
+	<hr>
+
+	<div class="row">
+
+	<div class="col-md-4">
+
+	<h6>
+
+	<i class="bi bi-heart-fill"></i>
+
+	Wishlist
+
+	</h6>
+
+	<p>
+
+	Keep all your favourite items in one place.
+
+	</p>
+
+	</div>
+
+	<div class="col-md-4">
+
+	<h6>
+
+	<i class="bi bi-cart-fill"></i>
+
+	Move to Cart
+
+	</h6>
+
+	<p>
+
+	Transfer products to your shopping cart anytime.
+
+	</p>
+
+	</div>
+
+	<div class="col-md-4">
+
+	<h6>
+
+	<i class="bi bi-shield-check"></i>
+
+	Secure Shopping
+
+	</h6>
+
+	<p>
+
+	Fast, secure and eco-friendly shopping experience.
+
+	</p>
+
+	</div>
+
+	</div>
+
+	<hr>
+
+	<p class="mb-0">
+
+	© 2026 ReWear | Giving Every Thread a Second Life
+
+	</p>
+
+	</div>
+
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	</body>
+
+	</html>	

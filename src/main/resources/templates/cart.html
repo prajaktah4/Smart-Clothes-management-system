@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Cart | ReWear</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body{background:#f5f7fa;font-family:Arial,sans-serif}
+.navbar{background:#198754}
+.card{border:none;border-radius:18px;box-shadow:0 8px 20px rgba(0,0,0,.08);transition:.3s}
+.card:hover{transform:translateY(-5px)}
+.product-img{height:170px;width:100%;object-fit:cover;border-radius:12px}
+.price{font-size:28px;color:#198754;font-weight:700}
+.summary{position:sticky;top:90px}
+footer{background:#198754;color:#fff;padding:25px;margin-top:40px}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark">
+<div class="container">
+<a class="navbar-brand" th:href="@{/marketplace}">
+<i class="bi bi-arrow-left-circle"></i> Marketplace
+</a>
+<span class="navbar-text text-white">
+<i class="bi bi-cart-fill"></i> My Cart
+</span>
+</div>
+</nav>
+
+<div class="container py-5">
+
+<h2 class="mb-4"><i class="bi bi-cart-fill"></i> My Shopping Cart</h2>
+
+<div class="alert alert-info text-center" th:if="${#lists.isEmpty(cartItems)}">
+<h3>Your Cart is Empty</h3>
+<a th:href="@{/marketplace}" class="btn btn-success mt-3">Continue Shopping</a>
+</div>
+
+<div class="row">
+
+<div class="col-lg-8">
+
+<div class="card p-3 mb-4" th:each="cart : ${cartItems}">
+<div class="row align-items-center">
+
+<div class="col-md-3">
+<img class="product-img"
+th:src="@{'/uploads/' + ${cart.product.imageName}}">
+</div>
+
+<div class="col-md-6">
+<h4 th:text="${cart.product.productName}">Product</h4>
+
+<p><b>Brand:</b> <span th:text="${cart.product.brand}"></span></p>
+<p><b>Category:</b> <span th:text="${cart.product.category}"></span></p>
+<p><b>Size:</b> <span th:text="${cart.product.size}"></span></p>
+<p><b>Condition:</b> <span th:text="${cart.product.condition}"></span></p>
+
+<p>
+<b>Quantity:</b>
+<span class="badge bg-success" th:text="${cart.quantity}">1</span>
+</p>
+
+</div>
+
+<div class="col-md-3 text-end">
+<div class="price">
+₹<span th:text="${cart.product.price}">0</span>
+</div>
+
+<a th:href="@{'/cart/delete/' + ${cart.cartId}}"
+class="btn btn-danger w-100 mt-3">
+<i class="bi bi-trash-fill"></i> Remove
+</a>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card p-4 summary">
+
+<h3>Order Summary</h3>
+<hr>
+
+<div class="d-flex justify-content-between">
+<span>Total Items</span>
+<b th:text="${cartItems.size()}">0</b>
+</div>
+
+<hr>
+
+<div class="d-flex justify-content-between">
+<span>Total Price</span>
+<h4 class="text-success">
+₹<span th:text="${totalPrice}">0</span>
+</h4>
+</div>
+
+<hr>
+
+<input type="text" class="form-control mb-3" placeholder="Coupon Code">
+
+<button class="btn btn-outline-success w-100 mb-3">
+Apply Coupon
+</button>
+
+<a th:href="@{/checkout}" class="btn btn-success btn-lg w-100">
+<i class="bi bi-bag-check-fill"></i> Proceed to Checkout
+</a>
+
+<a th:href="@{/marketplace}" class="btn btn-outline-primary w-100 mt-3">
+Continue Shopping
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="text-center">
+<h5>♻ ReWear</h5>
+<p>Giving Every Thread a Second Life.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
