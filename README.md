@@ -71,14 +71,13 @@ Features
 - Spring Boot
 - Spring MVC
 - Spring Data JPA
-- Hibernate
+
 
 ## Frontend
 - HTML5
 - CSS3
 - Bootstrap 5
 - Thymeleaf
-- JavaScript
 
 ## Database
 - PostgreSQL
@@ -93,7 +92,7 @@ Features
 - Git
 - GitHub
 
----
+
 
 #  Project Structure
 
